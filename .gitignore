@@ -8,3 +8,6 @@ out/
 .idea/
 
 .DS_STORE
+
+# Maven Build
+target/

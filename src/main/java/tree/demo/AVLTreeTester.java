@@ -1,3 +1,4 @@
+package tree.demo;
 
 import tree.AVLTree;
 import tree.BinarySearchTree;

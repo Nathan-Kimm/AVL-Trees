@@ -9,7 +9,7 @@ public interface Tree<T extends Comparable<T>> {
 	public void insert(T data);
 	
 	/**
-	 * Returns true iff the given data is in this tree
+	 * Returns true if the given data is in this tree
 	 * @param data
 	 * @return
 	 */
