@@ -4,6 +4,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
 
     @Override
     public void insert(T data) {
+        if(data == null) {
+            throw new IllegalArgumentException("Cannot insert null values into tree");
+        }
         this.root = insert(data, root);
     }
 
@@ -35,6 +38,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
      */
     @Override
     public boolean find(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Cannot find null values in tree");
+        }
         return find(data, root);
     }
 
@@ -68,6 +74,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
 
     // Helper method
     private T findMax(TreeNode<T> curNode) {
+        if(curNode == null) return null;
         // To find max, go all the way to the right and return the data
         while(curNode.right != null) {
             curNode = curNode.right;
@@ -77,6 +84,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
 
     @Override
     public void remove(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Cannot remove null values in tree");
+        }
         this.root = remove(data, root); // Call remove at the root of the tree
     }
 

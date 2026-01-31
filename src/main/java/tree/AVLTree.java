@@ -1,5 +1,5 @@
 package tree;
- 
+
 public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	
 	@Override
@@ -44,7 +44,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	
 	/**
 	 * Balances the given node. Assumes it is the lowest unbalanced node if unbalanced
-	 * @param node
+	 * @param curNode
 	 * @return
 	 */
 	private TreeNode<T> balance(TreeNode<T> curNode) {
@@ -73,31 +73,31 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	}
 	
 	private TreeNode<T> rotateRight(TreeNode<T> curNode) {
-		TreeNode<T> x = curNode.left;
-		TreeNode<T> T2 = x.right;
+		TreeNode<T> newRoot = curNode.left;
+		TreeNode<T> orphanSubtree = newRoot.right;
 
 		// Rotates by setting the right and left nodes of x and curNode
-		x.right = curNode;
-		curNode.left = T2;
+		newRoot.right = curNode;
+		curNode.left = orphanSubtree;
 
 		// Updates height of both nodes
-		curNode.height = Math.max(height(curNode.left), height(curNode.right))+1;;
-		x.height = Math.max(height(curNode.left), height(curNode.right))+1;
-		return x;
+		curNode.height = Math.max(height(curNode.left), height(curNode.right))+1;
+		newRoot.height = Math.max(height(newRoot.left), height(newRoot.right))+1;
+		return newRoot;
 	}
 	
 	private TreeNode<T> rotateLeft(TreeNode<T> curNode){
-		TreeNode<T> x = curNode.right;
-		TreeNode<T> T2 = x.left;
+		TreeNode<T> newRoot = curNode.right;
+		TreeNode<T> orphanSubtree = newRoot.left;
 
 		// Rotates by setting the right and left nodes of x and curNode
-		x.left = curNode;
-		curNode.right = T2;
+		newRoot.left = curNode;
+		curNode.right = orphanSubtree;
 
 		//Updates height of both nodes
-		curNode.height = Math.max(height(curNode.left), height(curNode.right))+1;;
-		x.height = Math.max(height(curNode.right), height(curNode.left))+1;;
-		return x;
+		curNode.height = Math.max(height(curNode.left), height(curNode.right))+1;
+		newRoot.height = Math.max(height(newRoot.right), height(newRoot.left))+1;
+		return newRoot;
 	}
 	
 	private int balanceFactor(TreeNode<T> node) {
@@ -106,6 +106,4 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		// Otherwise return the difference between the left and right nodes
 		return height(node.left) - height(node.right);
 	}
-	
-	
 }

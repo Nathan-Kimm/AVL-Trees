@@ -1,7 +1,6 @@
 package tree.demo;
 
 import tree.AVLTree;
-import tree.BinarySearchTree;
 
 public class AVLTreeTester {
 
@@ -14,11 +13,12 @@ public class AVLTreeTester {
 		for(int i : toInsert) {
 			avl.insert(i);
 		}
+
+		avl.printTree();
 		
 		/* Print out pre, in, and post-order */		
 		System.out.print("AVL Pre: " + avl.getPreOrder());
 		System.out.print("AVL In: " + avl.getInOrder());
 		System.out.print("AVL Post: " + avl.getPostOrder());
-		
 	}
 }
