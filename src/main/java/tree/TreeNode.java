@@ -9,10 +9,4 @@ public class TreeNode<T>{
 		public TreeNode(T data) {
 			this.data = data;
 		}
-		
-		public TreeNode(T data, int height) {
-			this(data);
-			this.height = height;
-		}
-		
 }

@@ -6,6 +6,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	public void insert(T data) {
 		this.root = insert(data, this.root);
 	}
+
 	protected TreeNode<T> insert(T data, TreeNode<T> curNode) {
 		//Calls the BST insert
 		curNode = super.insert(data, curNode);
@@ -19,34 +20,24 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		return curNode;
 	}
 
-	
 	@Override
 	public void remove(T data) {
-		/* Call remove starting at the root of the tree */
 		this.root = remove(data, this.root);
 	}
+
 	protected TreeNode<T> remove(T data, TreeNode<T> curNode) {
-		/* Call BST remove before balancing, use “super” to achieve this */
 		curNode = super.remove(data,  curNode);
-		
-		/* Handle the case when remove returns null */
 		if(curNode == null) return null;
-		
-		/* update the height of this node if necessary (if no change, that’s OK) */
+
+		// Updates the height of node
 		curNode.height = Math.max(height(curNode.left), height(curNode.right))+1;
-		
-		/* rotate if necessary (call balance() method to balance the node) */
+
+		// Balances if necessary
 		curNode = this.balance(curNode);
 		
 		return curNode;
 	}
 
-	
-	/**
-	 * Balances the given node. Assumes it is the lowest unbalanced node if unbalanced
-	 * @param curNode
-	 * @return
-	 */
 	private TreeNode<T> balance(TreeNode<T> curNode) {
 		//Gets the balance factor of the current node
 		int balance = balanceFactor(curNode);
@@ -76,7 +67,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		TreeNode<T> newRoot = curNode.left;
 		TreeNode<T> orphanSubtree = newRoot.right;
 
-		// Rotates by setting the right and left nodes of x and curNode
+		// Rotates by setting the right and left nodes of newRoot and curNode
 		newRoot.right = curNode;
 		curNode.left = orphanSubtree;
 
@@ -90,7 +81,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		TreeNode<T> newRoot = curNode.right;
 		TreeNode<T> orphanSubtree = newRoot.left;
 
-		// Rotates by setting the right and left nodes of x and curNode
+		// Rotates by setting the right and left nodes of newRoot and curNode
 		newRoot.left = curNode;
 		curNode.right = orphanSubtree;
 
@@ -101,9 +92,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	}
 	
 	private int balanceFactor(TreeNode<T> node) {
-		// If it's null return 0
 		if(node == null) return 0;
-		// Otherwise return the difference between the left and right nodes
 		return height(node.left) - height(node.right);
 	}
 }

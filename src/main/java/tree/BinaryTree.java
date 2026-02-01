@@ -65,7 +65,7 @@ public class BinaryTree<T> {
 		return height(root);
 	}
 
-	/* Computes the height of the tree on the fly */
+	// Returns the stored height
 	protected int height(TreeNode<T> node) {
 		if(node == null) return -1;
 		return node.height;
