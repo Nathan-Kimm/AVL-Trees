@@ -92,13 +92,4 @@ public class AVLTreeTest {
         avl.remove(75);
         assertFalse(avl.find(75));
     }
-
-    private boolean isBalanced(TreeNode<Integer> node) {
-        if(node == null) return true;
-
-        int balance = node.left.height - node.right.height;
-        if(Math.abs(balance) > 1) return false;
-
-        return isBalanced(node.left) && isBalanced(node.right);
-    }
 }

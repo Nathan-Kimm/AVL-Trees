@@ -91,7 +91,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> imp
     }
 
     protected TreeNode<T> remove(T data, TreeNode<T> curNode) {
-        if(curNode == null) return curNode;
+        if(curNode == null) return null;
 
         else if (data.compareTo(curNode.data) < 0) {
             curNode.left = remove(data, curNode.left);

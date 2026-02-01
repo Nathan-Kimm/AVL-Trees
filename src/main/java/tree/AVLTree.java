@@ -4,6 +4,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	
 	@Override
 	public void insert(T data) {
+		if (data == null) {
+			throw new IllegalArgumentException("Cannot insert null data");
+		}
 		this.root = insert(data, this.root);
 	}
 
@@ -22,6 +25,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 
 	@Override
 	public void remove(T data) {
+		if (data == null) {
+			throw new IllegalArgumentException("Cannot remove null data");
+		}
 		this.root = remove(data, this.root);
 	}
 
